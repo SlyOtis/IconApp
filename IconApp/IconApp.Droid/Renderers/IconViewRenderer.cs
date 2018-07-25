@@ -33,12 +33,21 @@ namespace IconApp.Droid.Renderers
 
         protected override void OnElementChanged(ElementChangedEventArgs<IconView> e)
         {
-            base.OnElementChanged(e);
-            if (e.OldElement == null)
+            if (e.OldElement != null) 
             {
-                SetNativeControl(new ImageView(Context));
+                // Clear old element event
             }
-            UpdateBitmap(e.OldElement);
+
+            if (e.NewElement != null)
+            {
+                if (Control == null)
+                {
+                    SetNativeControl(new ImageView(Context));
+                }
+                UpdateBitmap(e.OldElement);
+            }
+
+            base.OnElementChanged(e);
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -46,7 +55,7 @@ namespace IconApp.Droid.Renderers
             base.OnElementPropertyChanged(sender, e);
             if (e.PropertyName == IconView.SourceProperty.PropertyName)
             {
-                UpdateBitmap(null);
+                UpdateBitmap(e);
             }
             else if (e.PropertyName == IconView.ForegroundProperty.PropertyName)
             {
