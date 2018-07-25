@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IconApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("SlyIconApp")]
+[assembly: AssemblyDescription("A simple icon tinter")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("IconApp")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCompany("Indico")]
+[assembly: AssemblyProduct("SlyIconApp")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]

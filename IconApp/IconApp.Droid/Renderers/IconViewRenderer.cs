@@ -18,7 +18,7 @@ namespace IconApp.Droid.Renderers
 
         public IconViewRenderer()
         {
-            base.AutoPackage = false;
+            AutoPackage = false;
         }
 
         protected override void Dispose(bool disposing)
@@ -44,7 +44,8 @@ namespace IconApp.Droid.Renderers
                 {
                     SetNativeControl(new ImageView(Context));
                 }
-                UpdateBitmap(e.OldElement);
+                
+                UpdateBitmap(e.NewElement);
             }
 
             base.OnElementChanged(e);
@@ -55,24 +56,23 @@ namespace IconApp.Droid.Renderers
             base.OnElementPropertyChanged(sender, e);
             if (e.PropertyName == IconView.SourceProperty.PropertyName)
             {
-                UpdateBitmap(e);
+                UpdateBitmap((IconView)sender);
             }
             else if (e.PropertyName == IconView.ForegroundProperty.PropertyName)
             {
-                UpdateBitmap(null);
+                UpdateBitmap((IconView)sender);
             }
         }
 
-        private void UpdateBitmap(IconView previous = null)
+        private void UpdateBitmap(IconView element = null)
         {
-            if (!_isDisposed && !string.IsNullOrWhiteSpace(Element.Source))
-            {
-                var d = Resources.GetDrawable(Element.Source).Mutate();
-                d.SetColorFilter(new LightingColorFilter(Element.Foreground.ToAndroid(), Element.Foreground.ToAndroid()));
-                d.Alpha = Element.Foreground.ToAndroid().A;
-                Control.SetImageDrawable(d);
-                ((IVisualElementController)Element).NativeSizeChanged();
-            }
+            if (_isDisposed || string.IsNullOrWhiteSpace(element.Source)) return;
+            
+            var d = Resources.GetDrawable(element.Source).Mutate();
+            d.SetColorFilter(new LightingColorFilter(element.Foreground.ToAndroid(), element.Foreground.ToAndroid()));
+            d.Alpha = element.Foreground.ToAndroid().A;
+            Control.SetImageDrawable(d);
+            ((IVisualElementController)element).NativeSizeChanged();
         }
     }
 }

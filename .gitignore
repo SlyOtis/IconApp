@@ -202,6 +202,7 @@ sdist/
 develop-eggs/
 .installed.cfg
 .idea/
+.vs/
 
 # Installer logs
 pip-log.txt
